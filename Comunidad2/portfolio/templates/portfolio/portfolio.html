@@ -1,0 +1,65 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Portafolio{% endblock %}
+
+{% block background %}{% load static %}{% static 'core/img/portfolio-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1 style="color: white">Clasificados</h1>
+<h1 style="color: black;">Comunidad Colmenita</h1>
+<span style="color: black;" class="subheading">Guía de servicios, productos y emprendimientos de toda la comunidad colmenita.</span>
+{% endblock %}
+
+{% block content %}
+    {% for projecte in projects %}
+        <!-- Proyecto -->
+        <div class="row project">  	
+
+          
+                <img width="800" height="800" class="img-fluid" src="{{projecte.image.url}}" alt="">
+                
+           
+        <!--    <div class="col-lg-3 col-md-4 offset-lg-1"> --> 
+         <!--       <img width="800" height="800" class="img-fluid" src="{{projecte.image.url}}" alt="">--> 
+                
+        <!--    </div> --> 
+            <div class="col-lg-7 col-md-8">
+                <h2 class="section-heading title">{{projecte.title}}</h2>   
+                
+                <font face="arial">
+                    
+                <p>{{projecte.description|linebreaks}}</p>
+                
+                {% if projecte.telefono == none  %}
+                    <p>Telefono:--- </p>
+
+                {% else %}
+                    <p>Telefono : {{projecte.telefono}}</p>
+
+                {% endif %}
+
+                {% if projecte.email == none  %}
+                    <p>Email:--- </p>
+
+                {% else %}
+                    <p>Email : {{projecte.email}}</p>
+
+                {% endif %}
+
+
+           
+                {% if projecte.link == none  %}
+
+                    <p>Sitio WEB:---</p>
+
+                {% else %}
+
+                    <p>Sitio WEB:<a href="{{projecte.link}}">{{projecte.link}}</a></p>
+
+                {% endif %}
+
+                </font>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
